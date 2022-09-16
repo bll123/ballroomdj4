@@ -19,6 +19,49 @@ on:
     branches: [ "master" ]
 
 jobs:
+  build-linux:
+    name: build-linux
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - run: make
+      
+      
+  build-macos-12:
+    name: build-macos-12
+    runs-on: macos-12
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - run: make
+  
+  #build-windows:
+  #  name: build-windows
+  #  runs-on: windows-latest
+  #  permissions:
+  #    actions: read
+  #    contents: read
+  #    security-events: write
+  #    
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v3
+  #      
+  #    - run: make
+  
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
