@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      - run: make
+      - run: cd src; make
       
       
   build-macos-12:
@@ -46,7 +46,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      - run: make
+      - run: cd src; make
   
   #build-windows:
   #  name: build-windows
@@ -105,7 +105,7 @@ jobs:
     #   If the Autobuild fails above, remove it and uncomment the following three lines. 
     #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
 
-    - run: make
+    - run: cd src; make
   
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
