@@ -128,6 +128,8 @@ if [[ $skipmpinst == F ]]; then
   fi
 fi
 
+PATH=$PATH:/opt/local/bin
+
 echo "-- Running MacPorts 'port selfupdate' with sudo"
 sudo port selfupdate
 echo "-- Running MacPorts 'port upgrade outdated' with sudo"

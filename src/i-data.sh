@@ -1,0 +1,1 @@
+./itunes /home/bll/vbox_shared/iTunes\ Music\ Library.xml '/plist/dict/dict/key|/plist/dict/dict/dict/key|/plist/dict/dict/dict/integer|/plist/dict/dict/dict/string|/plist/dict/dict/dict/date|/plist/dict/dict/dict/true|/plist/dict/dict/dict/false'
