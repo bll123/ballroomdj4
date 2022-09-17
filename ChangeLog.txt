@@ -1,5 +1,13 @@
 BallroomDJ 4 Change Log
 
+4.0.0 alpha 2022-09-??
+
+- test suite in progress
+- player: bug-fix: song playback was duplicated after the pause button
+  was pressed.
+- player user interface: disable position slider when a song is paused.
+- player user interface: fix display of position slider when paused.
+
 4.0.0 alpha 2022-09-10
 
 - various tests added

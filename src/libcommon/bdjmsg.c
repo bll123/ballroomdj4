@@ -14,7 +14,7 @@ enum {
 #define MSG_RS      '~'
 
 /* for debugging */
-static char *routetxt [ROUTE_MAX] = {
+const char *bdjmsgroutetxt [ROUTE_MAX] = {
   [ROUTE_CONFIGUI] = "CONFIGUI",
   [ROUTE_DBTAG] = "DBTAG",
   [ROUTE_DBUPDATE] = "DBUPDATE",
@@ -29,10 +29,11 @@ static char *routetxt [ROUTE_MAX] = {
   [ROUTE_STARTERUI] = "STARTERUI",
   [ROUTE_HELPERUI] = "HELPERUI",
   [ROUTE_BPM_COUNTER] = "BPM_COUNTER",
+  [ROUTE_TEST_SUITE] = "TEST_SUITE",
 };
 
 /* for debugging */
-static char *msgtxt [MSG_MAX] = {
+const char *bdjmsgtxt [MSG_MAX] = {
   [MSG_NULL] = "NULL",
   [MSG_EXIT_REQUEST] = "EXIT_REQUEST",
   [MSG_HANDSHAKE] = "HANDSHAKE",
@@ -121,6 +122,11 @@ static char *msgtxt [MSG_MAX] = {
   [MSG_DB_ALL_FILES_SENT] = "DB_ALL_FILES_SENT",
   [MSG_BPM_TIMESIG] = "BPM_TIMESIG",
   [MSG_BPM_SET] = "BPM_SET",
+  [MSG_CHK_MAIN_MUSICQ] = "CHK_MAIN_MUSICQ",
+  [MSG_CHK_MAIN_STATUS] = "CHK_MAIN_MUSICQ",
+  [MSG_CHK_PLAYER_STATUS] = "CHK_PLAYER_STATUS",
+  [MSG_CHK_PLAYER_SONG] = "CHK_PLAYER_SONG",
+  [MSG_CHK_MAIN_RESET] = "CHK_MAIN_RESET",
 };
 
 size_t
@@ -162,14 +168,15 @@ msgDecode (char *msgbuff, bdjmsgroute_t *routefrom, bdjmsgroute_t *route,
   }
 }
 
-inline char *
+inline const char *
 msgDebugText (bdjmsgmsg_t msg)
 {
-  return msgtxt [msg];
+  return bdjmsgtxt [msg];
 }
 
-inline char *
+inline const char *
 msgRouteDebugText (bdjmsgroute_t route)
 {
-  return routetxt [route];
+  return bdjmsgroutetxt [route];
 }
+

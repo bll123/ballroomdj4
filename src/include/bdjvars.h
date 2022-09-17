@@ -3,6 +3,8 @@
 
 typedef enum {
   BDJV_DB_TOP_DIR,    // temporary
+  BDJV_TS_SECTION,    // temporary
+  BDJV_TS_TEST,       // temporary
   BDJV_MAX,
 } bdjvarkey_t;
 
@@ -21,6 +23,7 @@ typedef enum {
   BDJVL_DBUPDATE_PORT,
   BDJVL_DBTAG_PORT,
   BDJVL_BPM_COUNTER_PORT,
+  BDJVL_TEST_SUITE_PORT,
   BDJVL_NUM_PORTS,
   /* insert non-port keys here */
   BDJVL_MAX,

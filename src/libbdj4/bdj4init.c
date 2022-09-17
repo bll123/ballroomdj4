@@ -59,6 +59,7 @@ bdj4startup (int argc, char *argv[], musicdb_t **musicdb,
     { "bdj4updater",  no_argument,      NULL,   0 },
     { "main",         no_argument,      NULL,   0 },
     { "playerui",     no_argument,      NULL,   0 },
+    { "testsuite",    no_argument,      NULL,   0 },
     /* bdj4 loader options to ignore */
     { "debugself",    no_argument,      NULL,   0 },
     { "msys",         no_argument,      NULL,   0 },
@@ -69,7 +70,6 @@ bdj4startup (int argc, char *argv[], musicdb_t **musicdb,
     { "startlog",     no_argument,      NULL,   's' },
     { "logstderr",    no_argument,      NULL,   'l' },
     { "hidemarquee",  no_argument,      NULL,   'h' },
-    { "cli"       ,   no_argument,      NULL,   'c' },
     /* debug options */
     { "nostart",      no_argument,      NULL,   'n' },
     { "nomarquee",    no_argument,      NULL,   'm' },
@@ -86,6 +86,11 @@ bdj4startup (int argc, char *argv[], musicdb_t **musicdb,
     { "updfromtags",  no_argument,      NULL,   'U' },
     { "writetags",    no_argument,      NULL,   'W' },
     { "dbtopdir",     required_argument,NULL,   'D' },
+    { "cli",          no_argument,      NULL,   'c' },
+    /* test suite options */
+    { "runsection",   required_argument,NULL,   'S' },
+    { "runtest",      required_argument,NULL,   'T' },
+    { "verbose",      no_argument,      NULL,   'V' },
     { NULL,           0,                NULL,   0 }
   };
 
@@ -128,10 +133,6 @@ bdj4startup (int argc, char *argv[], musicdb_t **musicdb,
           logMsg (LOG_DBG, LOG_BASIC, "set dbtopdir %s", optarg);
           bdjvarsSetStr (BDJV_DB_TOP_DIR, optarg);
         }
-        break;
-      }
-      case 'c': {
-        flags |= BDJ4_CLI;
         break;
       }
       case 'l': {
@@ -178,6 +179,28 @@ bdj4startup (int argc, char *argv[], musicdb_t **musicdb,
       }
       case 'h': {
         flags |= BDJ4_INIT_HIDE_MARQUEE;
+        break;
+      }
+      case 'S': {
+        if (optarg) {
+          bdjvarsSetStr (BDJV_TS_SECTION, optarg);
+        }
+        flags |= BDJ4_TS_RUNSECTION;
+        break;
+      }
+      case 'T': {
+        if (optarg) {
+          bdjvarsSetStr (BDJV_TS_TEST, optarg);
+        }
+        flags |= BDJ4_TS_RUNTEST;
+        break;
+      }
+      case 'V': {
+        flags |= BDJ4_TS_VERBOSE;
+        break;
+      }
+      case 'c': {
+        flags |= BDJ4_DB_CLI;
         break;
       }
       default: {

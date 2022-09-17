@@ -314,6 +314,7 @@ dbupdateProcessing (void *udata)
     if (gKillReceived) {
       progstateShutdownProcess (dbupdate->progstate);
       logMsg (LOG_SESS, LOG_IMPORTANT, "got kill signal");
+      gKillReceived = 0;
     }
     return stop;
   }
@@ -564,6 +565,7 @@ dbupdateProcessing (void *udata)
   if (gKillReceived) {
     progstateShutdownProcess (dbupdate->progstate);
     logMsg (LOG_SESS, LOG_IMPORTANT, "got kill signal");
+    gKillReceived = 0;
   }
   return stop;
 }
@@ -605,7 +607,7 @@ dbupdateConnectingCallback (void *tdbupdate, programstate_t programState)
     if (! connIsConnected (dbupdate->conn, ROUTE_DBTAG)) {
       connConnect (dbupdate->conn, ROUTE_DBTAG);
     }
-    if ((dbupdate->startflags & BDJ4_CLI) != BDJ4_CLI) {
+    if ((dbupdate->startflags & BDJ4_DB_CLI) != BDJ4_DB_CLI) {
       if (! connIsConnected (dbupdate->conn, ROUTE_MANAGEUI)) {
         connConnect (dbupdate->conn, ROUTE_MANAGEUI);
       }
@@ -618,7 +620,7 @@ dbupdateConnectingCallback (void *tdbupdate, programstate_t programState)
   if (connIsConnected (dbupdate->conn, ROUTE_MANAGEUI)) {
     ++c;
   }
-  if ((dbupdate->startflags & BDJ4_CLI) == BDJ4_CLI) {
+  if ((dbupdate->startflags & BDJ4_DB_CLI) == BDJ4_DB_CLI) {
     if (c == 1) { rc = STATE_FINISHED; }
   } else {
     if (c == 2) { rc = STATE_FINISHED; }
@@ -645,7 +647,7 @@ dbupdateHandshakeCallback (void *tdbupdate, programstate_t programState)
   if (connHaveHandshake (dbupdate->conn, ROUTE_MANAGEUI)) {
     ++c;
   }
-  if ((dbupdate->startflags & BDJ4_CLI) == BDJ4_CLI) {
+  if ((dbupdate->startflags & BDJ4_DB_CLI) == BDJ4_DB_CLI) {
     if (c == 1) { rc = STATE_FINISHED; }
   } else {
     if (c == 2) { rc = STATE_FINISHED; }
@@ -860,7 +862,7 @@ dbupdateWriteTags (dbupdate_t *dbupdate, const char *ffn, slist_t *tagdata)
   }
 
   newtaglist = songTagList (song);
-  audiotagWriteTags (ffn, tagdata, newtaglist, 0);
+  audiotagWriteTags (ffn, tagdata, newtaglist, 0, AT_UPDATE_MOD_TIME);
   slistFree (tagdata);
   slistFree (newtaglist);
   IncCount (C_FILE_PROC);
