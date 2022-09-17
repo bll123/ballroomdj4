@@ -1,0 +1,31 @@
+syntax: regexp
+*~
+bin/
+data/
+dev/
+# for the time being, ignore this (doxygen output)
+doxygen/
+http/
+img/profile0[1-9]
+licenses/
+locale/locales.txt$
+locale/en
+locale/en_US/
+locale/en_GB/
+locale/nl
+locale/nl_BE/
+locale/de
+locale/de_DE/
+locale/tr
+locale/tr_TR/
+packages/
+plocal/
+scripts/linux/.ballroomdj-ss-restore
+src/build/
+src/po/*.bak
+src/po/*.backup
+src/w
+test-music
+tmp/
+web/marquee4.html
+x/

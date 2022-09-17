@@ -1,2 +1,0 @@
-sudo apt remove fossil libx11-dev libxft-dev libxrandr-dev
-sudo apt remove libxss-dev libxext-dev
