@@ -21,7 +21,7 @@ on:
 jobs:
   build-linux:
     name: build-linux
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-2204
     permissions:
       actions: read
       contents: read
@@ -66,7 +66,7 @@ jobs:
   
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-2204
     permissions:
       actions: read
       contents: read
@@ -107,6 +107,8 @@ jobs:
     #   If the Autobuild fails above, remove it and uncomment the following three lines. 
     #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
 
+    - run: sudo apt install check gobjc libgtk-3-dev libvlc-dev libvlccore-dev
+    - run: sudo apt install libpulse-dev libcurl4-openssl-dev
     - run: cd src; make
   
     - name: Perform CodeQL Analysis
